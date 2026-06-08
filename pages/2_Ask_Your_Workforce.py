@@ -15,7 +15,7 @@ from components.navbar import render as navbar
 from components.theme import apply_theme
 
 master = get_master()
-lang = st.session_state.lang
+lang = st.session_state.get("lang", "en")
 apply_theme()
 navbar()
 

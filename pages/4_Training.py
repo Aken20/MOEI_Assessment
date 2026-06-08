@@ -16,7 +16,7 @@ import components.charts as charts
 master = get_master()
 raw = get_raw_sheets()
 train_raw = raw["training"]
-lang = st.session_state.lang
+lang = st.session_state.get("lang", "en")
 
 # ── Top navbar ───────────────────────────────────────────────────────────────
 navbar()

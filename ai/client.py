@@ -140,9 +140,20 @@ def complete_structured(
         raise RuntimeError("Model returned empty response — possible rate limit or content filter.")
 
     raw = content.strip()
+
     # Strip markdown code fences if present
     if raw.startswith("```"):
         raw = "\n".join(raw.split("\n")[1:])
         raw = raw.rstrip("`").rstrip()
+
+    # If the model returned text + JSON mixed, extract the JSON object
+    if not raw.startswith("{"):
+        # Find the first { and last }
+        start = raw.find("{")
+        end = raw.rfind("}")
+        if start >= 0 and end > start:
+            raw = raw[start:end + 1]
+        else:
+            raise RuntimeError(f"Model returned non-JSON response: {raw[:200]}...")
 
     return _json.loads(raw)

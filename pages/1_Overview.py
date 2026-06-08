@@ -14,7 +14,7 @@ from components.navbar import render as navbar
 import components.charts as charts
 
 master = get_master()
-lang = st.session_state.lang
+lang = st.session_state.get("lang", "en")
 
 # ── Top navbar ───────────────────────────────────────────────────────────────
 navbar()

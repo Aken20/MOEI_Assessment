@@ -17,7 +17,7 @@ import components.charts as charts
 from ai.workforce_qa import ask_workforce, ask_fallback
 
 master = get_master()
-lang = st.session_state.lang
+lang = st.session_state.get("lang", "en")
 
 # ── Top navbar ───────────────────────────────────────────────────────────────
 navbar()
